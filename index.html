@@ -44,33 +44,69 @@ const params = new URLSearchParams(window.location.search);
 
 const name = params.get("name") || "Customer";
 const order = params.get("order") || "";
+const tracking = params.get("tracking") || "";
+const courier = params.get("courier") || "";
+const type = params.get("type") || "confirmation";
 
-document.getElementById("msg").value =
-`Hi ${name}, 👋
+let message = "";
+
+if(type === "confirmation"){
+
+message = `Hi ${name}, 👋
 
 Thank you for your order *${order}* with *mbellish*! 😊
 
 We've received your order and will begin processing it shortly.
 
-📦 We'll keep you updated as your order progresses.
+We'll keep you updated as your order progresses.
 
-If you have any questions, simply reply to this message—we're happy to help.
+If you have any questions, simply reply to this message.
 
 Thank you for choosing *mbellish*! ❤️`;
 
+}
+
+else if(type === "ready"){
+
+message = `Hi ${name}, 👋
+
+Great news! 😊
+
+Your order *${order}* has been packed and is ready for dispatch. 📦
+
+We'll be handing it over to our delivery partner shortly. Once it's dispatched, we'll share the tracking details with you.
+
+Thank you for choosing *mbellish*! ❤️`;
+
+}
+
+else if(type === "shipped"){
+
+message = `Hi ${name}, 👋
+
+Your order *${order}* has been dispatched! 🚚
+
+${courier ? `Courier Partner: *${courier}*\n` : ""}${tracking ? `Tracking Number: *${tracking}*\n\n` : ""}You can now track your shipment using the tracking number above.
+
+Thank you for choosing *mbellish*! ❤️`;
+
+}
+
+document.getElementById("msg").value = message;
+
 function copyText(){
 
-const txt=document.getElementById("msg");
+const txt = document.getElementById("msg");
 
 txt.select();
+txt.setSelectionRange(0,99999);
 
-navigator.clipboard.writeText(txt.value);
+navigator.clipboard.writeText(message);
 
-alert("Copied!");
+alert("Message copied!");
 
 }
 
 </script>
-
 </body>
 </html>
