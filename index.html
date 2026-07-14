@@ -47,6 +47,7 @@ const order = params.get("order") || "";
 const tracking = params.get("tracking") || "";
 const courier = params.get("courier") || "";
 const type = params.get("type") || "confirmation";
+const trackingLink = params.get("trackinglink") || "";
 
 let message = "";
 
@@ -82,11 +83,11 @@ Thank you for choosing *mbellish*! ❤️`;
 
 else if(type === "shipped"){
 
-message = `Hi ${name}, 👋
+message = `Hi 👋
 
 Your order *${order}* has been dispatched! 🚚
 
-${courier ? `Courier Partner: *${courier}*\n` : ""}${tracking ? `Tracking Number: *${tracking}*\n\n` : ""}You can now track your shipment using the tracking number above.
+${courier ? `📦 Courier Partner: *${courier}*\n` : ""}${tracking ? `🔖 Tracking Number: *${tracking}*\n` : ""}${trackingLink ? `🔗 Tracking Link: ${trackingLink}\n\n` : "\n"}You can track your shipment using the tracking details above.
 
 Thank you for choosing *mbellish*! ❤️`;
 
