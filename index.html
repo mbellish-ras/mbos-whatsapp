@@ -87,7 +87,10 @@ message = `Hi 👋
 
 Your order *${order}* has been dispatched! 🚚
 
-${courier ? `📦 Courier Partner: *${courier}*\n` : ""}${tracking ? `🔖 Tracking Number: *${tracking}*\n` : ""}${trackingLink ? `🔗 Tracking Link: ${trackingLink}\n\n` : "\n"}You can track your shipment using the tracking details above.
+📦 Courier Partner: *${courier}*
+🔖 Tracking Number: *${tracking}*
+
+${trackingLink ? `🔗 Track your shipment:\n${trackingLink}\n\n` : ""}You can track your shipment using the details above.
 
 Thank you for choosing *mbellish*! ❤️`;
 
